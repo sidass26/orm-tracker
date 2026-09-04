@@ -14,7 +14,7 @@
   }
   *{box-sizing:border-box;margin:0;padding:0}
   body{background:var(--bg);color:var(--fg);font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;padding:24px 20px 48px}
-  .wrap{max-width:1080px;margin:0 auto}
+  .wrap{max-width:1120px;margin:0 auto}
   header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding-bottom:6px}
   .logo{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--purple));font-weight:800;color:#fff;font-size:18px}
   h1{font-size:20px;font-weight:800;letter-spacing:-.01em}
@@ -25,9 +25,15 @@
   .pill.v2{color:var(--accent);background:rgba(79,140,255,.14)}
   .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
   .chip{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;color:var(--muted);background:var(--card);border:1px solid var(--border);padding:4px 9px;border-radius:8px}
+  .cardsum{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:16px}
+  .stat{background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:12px 14px}
+  .stat .k{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+  .stat .v{font-size:23px;font-weight:800;line-height:1.15}
+  .stat .chg{font-size:11px;color:var(--green);font-weight:700}
+  .stat .chg.down{color:var(--red)}
   .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}
-  @media(max-width:760px){.grid{grid-template-columns:1fr}}
-  .card{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);padding:0;overflow:hidden}
+  @media(max-width:820px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
   .card-h{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--border)}
   .ic{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;flex:0 0 auto}
   .card-h .t{font-size:14px;font-weight:700}
@@ -38,21 +44,15 @@
   .row:last-child{border-bottom:none}
   .row .name{font-weight:600;font-size:13px}
   .row .meta{color:var(--muted);font-size:12px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .tag{font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:6px;background:rgba(139,147,163,.13);color:var(--muted);border:1px solid var(--border)}
+  a{color:var(--accent);text-decoration:none}
   .st{font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:999px;min-width:74px;text-align:center}
   .st.done{color:var(--green);background:rgba(62,207,142,.15)}
   .st.todo{color:var(--accent);background:rgba(79,140,255,.15)}
   .st.wait{color:var(--amber);background:rgba(245,167,66,.15)}
   .st.risk{color:var(--red);background:rgba(255,93,93,.15)}
-  .cardsum{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
-  .stat{background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:12px 14px}
-  .stat .k{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
-  .stat .v{font-size:23px;font-weight:800;line-height:1.15}
-  .stat .chg{font-size:11px;color:var(--green);font-weight:700}
-  .stat .chg.down{color:var(--red)}
-  footer{color:var(--muted);font-size:11.5px;margin-top:26px;line-height:1.7}
-  .legend{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:11px;color:var(--muted)}
+  .legend{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:11px;color:var(--muted);margin-top:16px}
   .legend .st{font-size:10px;padding:1px 7px}
+  footer{color:var(--muted);font-size:11.5px;margin-top:26px;line-height:1.7}
 </style>
 </head>
 <body>
@@ -68,85 +68,122 @@
     <span class="pill v2">Weekly refresh</span>
   </header>
 
-  <div class="chips">
-    <span class="chip">blog-outreach</span>
-    <span class="chip">reddit-comments</span>
-    <span class="chip">takedown</span>
-    <span class="chip">process</span>
-    <span class="chip">updated · Fri Sep 04 2026</span>
-  </div>
+  <div class="chips" id="chips"></div>
+  <div class="cardsum" id="sum"></div>
+  <div class="grid" id="grid"></div>
 
-  <!-- SUMMARY -->
-  <div class="cardsum">
-    <div class="stat"><div class="k">Blog outreach</div><div class="v">34</div><div class="chg">▼ 6 live</div></div>
-    <div class="stat"><div class="k">Published</div><div class="v">12</div><div class="chg">▲ +3 wk</div></div>
-    <div class="stat"><div class="k">Reddit comments</div><div class="v">48</div><div class="chg">rev ▲ 2.1k</div></div>
-    <div class="stat"><div class="k">Open takedowns</div><div class="v">4</div><div class="chg down">▲ 1 new</div></div>
-  </div>
-
-  <div class="grid">
-
-    <!-- 1. Blog outreach -->
-    <div class="card">
-      <div class="card-h"><div class="ic" style="background:rgba(79,140,255,.15)">✍</div>
-        <div><div class="t">Blog Outreach</div><div class="d">Contacts, pitches, follow-ups</div></div>
-        <span class="count">34 total</span></div>
-      <div class="row"><span class="name">TechCrunch</span><span class="meta">pitched Thu · follow-up Mon</span><span class="st wait">FOLLOW-UP</span></div>
-      <div class="row"><span class="name">The Verge</span><span class="meta">accepted · draft due Fri</span><span class="st wait">DRAFTING</span></div>
-      <div class="row"><span class="name">VentureBeat</span><span class="meta">published Wed · 21k views</span><span class="st done">PUBLISHED</span></div>
-      <div class="row"><span class="name">TechRadar</span><span class="meta">no reply ×2 · close</span><span class="st risk">REJECTED</span></div>
-      <div class="row"><span class="name">Mashable</span><span class="meta">sent Mon · waiting</span><span class="st todo">PITCHED</span></div>
-      <div class="row"><span class="name">Ars Technica</span><span class="meta">editor reply · needs data</span><span class="st wait">WAITING</span></div>
-    </div>
-
-    <!-- 2. Reddit comments -->
-    <div class="card">
-      <div class="card-h"><div class="ic" style="background:rgba(245,167,66,.15)">👆</div>
-        <div><div class="t">Reddit Comments</div><div class="d">Tracked comments, reach, replies</div></div>
-        <span class="count">48 tracked</span></div>
-      <div class="row"><span class="name">r/startups · "why our stack"</span><span class="meta">rev 340 · 6 replies</span><span class="st done">LIVE</span></div>
-      <div class="row"><span class="name">r/SaaS · pricing thread</span><span class="meta">rev 210 · reply pending</span><span class="st wait">NEEDS REPLY</span></div>
-      <div class="row"><span class="name">r/technology · AMA pitch</span><span class="meta">mods asked · not sent</span><span class="st todo">TODO</span></div>
-      <div class="row"><span class="name">r/indiehackers · launch</span><span class="meta">rev 890 · top</span><span class="st done">TOP</span></div>
-      <div class="row"><span class="name">r/bigtech · negative</span><span class="meta">flagged · needs reply</span><span class="st risk">REPLY</span></div>
-    </div>
-
-    <!-- 3. Takedowns -->
-    <div class="card">
-      <div class="card-h"><div class="ic" style="background:rgba(255,93,93,.15)">🚫</div>
-        <div><div class="t">Takedowns</div><div class="d">DMCA and other requests, status</div></div>
-        <span class="count">4 open</span></div>
-      <div class="row"><span class="name">Scraper site · product page</span><span class="meta">DMCA filed Mon</span><span class="st wait">IN REVIEW</span></div>
-      <div class="row"><span class="name">Stolen FAQ content</span><span class="meta">counsel sent · 48h window</span><span class="st wait">AWAITING</span></div>
-      <div class="row"><span class="name">Fake review cluster</span><span class="meta">platform ticket open</span><span class="st risk">ESCALATED</span></div>
-      <div class="row"><span class="name">Old sensitive index</span><span class="meta">removal confirmed Fri</span><span class="st done">RESOLVED</span></div>
-      <div class="row"><span class="name">Mirror domain</span><span class="meta">reported · no action yet</span><span class="st wait">PENDING</span></div>
-    </div>
-
-    <!-- 4. Process -->
-    <div class="card">
-      <div class="card-h"><div class="ic" style="background:rgba(55,208,220,.15)">⚙</div>
-        <div><div class="t">Process &amp; Cadence</div><div class="d">The workflow we run</div></div>
-        <span class="badge">RUNBOOK</span></div>
-      <div class="row"><span class="name">Outreach sweep · Mon 09:00 IST</span><span class="meta">pitch + follow-up digest</span><span class="st done">SCHED</span></div>
-      <div class="row"><span class="name">Reddit check · daily 12:00</span><span class="meta">track new + unanswered</span><span class="st done">SCHED</span></div>
-      <div class="row"><span class="name">Takedown review · Fri 17:00</span><span class="meta">escalate stale requests</span><span class="st wait">DUE</span></div>
-      <div class="row"><span class="name">Monthly report · day 1</span><span class="meta">published count, rev, resolved</span><span class="st todo">UPCOMING</span></div>
-    </div>
-  </div>
-
-  <div class="legend" style="margin-top:16px">
-    <span>Status:</span>
-    <span class="st done">DONE</span>
-    <span class="st todo">TODO</span>
-    <span class="st wait">IN PROGRESS</span>
-    <span class="st risk">NEEDS ACTION</span>
-  </div>
+  <div class="legend" id="legend"></div>
 
   <footer>
-    ORM Tracker · blog outreach, reddit comments, and takedowns, tracked in one shared view.
-    Refreshed weekly · tell me what changed and this updates.
+    ORM Tracker · paid backlinks, creator content, blog outreach, reddit, and takedowns in one shared view.
+    Anything changes — paid link confirmed, a post goes live, a video published — it gets logged here.
   </footer>
 </div>
+
+<script>
+/* ---- DATA. Edit entries here to log new items. ---- */
+var TRACKER = {
+  updated: "Fri Sep 04 2026",
+  chips: [
+    "content-backlinks", "creator-trips", "youtube",
+    "blog-outreach", "reddit-comments", "takedown", "process"
+  ],
+  summary: [
+    {k:"Paid backlinks", v:1, chg:"▼ 1 paid"},
+    {k:"Creator posts",  v:1, chg:"▲ live soon"},
+    {k:"YouTube videos", v:2, chg:"▲ scheduled"},
+    {k:"Reddit comments",v:48, chg:"rev ▲ 2.1k"},
+    {k:"Open takedowns", v:4, chg:"▲ 1 new"}
+  ],
+  sections: [
+    {
+      icon:"🔗", icBg:"rgba(79,140,255,.15)",
+      title:"Backlinks & Content", desc:"Paid links, creator trips, video",
+      count:"3 active",
+      rows:[
+        {name:"RobFromJapan", meta:'<a href="https://robfromjapan.com">robfromjapan.com</a> · 1 paid backlink', st:"PAID", stc:"done"},
+        {name:"Victoria · That Mum Travel Life", meta:'<a href="https://thatmumtravellife.com">thatmumtravellife.com</a> · sent to Disneyland · blog + YouTube to go live', st:"IN PRODUCTION", stc:"wait"},
+        {name:"YouTube videos ×2", meta:"scheduled to go live · link TBD once published", st:"SCHEDULED", stc:"todo"}
+      ]
+    },
+    {
+      icon:"✍", icBg:"rgba(79,140,255,.15)",
+      title:"Blog Outreach", desc:"Contacts, pitches, follow-ups",
+      count:"34 total",
+      rows:[
+        {name:"TechCrunch", meta:"pitched Thu · follow-up Mon", st:"FOLLOW-UP", stc:"wait"},
+        {name:"The Verge", meta:"accepted · draft due Fri", st:"DRAFTING", stc:"wait"},
+        {name:"VentureBeat", meta:"published Wed · 21k views", st:"PUBLISHED", stc:"done"},
+        {name:"TechRadar", meta:"no reply ×2 · close it out", st:"REJECTED", stc:"risk"},
+        {name:"Mashable", meta:"sent Mon · waiting", st:"PITCHED", stc:"todo"},
+        {name:"Ars Technica", meta:"editor reply · needs data", st:"WAITING", stc:"wait"}
+      ]
+    },
+    {
+      icon:"👆", icBg:"rgba(245,167,66,.15)",
+      title:"Reddit Comments", desc:"Tracked comments, reach, replies",
+      count:"48 tracked",
+      rows:[
+        {name:"r/startups · \"why our stack\"", meta:"rev 340 · 6 replies", st:"LIVE", stc:"done"},
+        {name:"r/SaaS · pricing thread", meta:"rev 210 · reply pending", st:"NEEDS REPLY", stc:"wait"},
+        {name:"r/technology · AMA pitch", meta:"mods asked · not sent", st:"TODO", stc:"todo"},
+        {name:"r/indiehackers · launch", meta:"rev 890 · top", st:"TOP", stc:"done"},
+        {name:"r/bigtech · negative", meta:"flagged · needs reply", st:"REPLY", stc:"risk"}
+      ]
+    },
+    {
+      icon:"🚫", icBg:"rgba(255,93,93,.15)",
+      title:"Takedowns", desc:"DMCA and other requests, status",
+      count:"4 open",
+      rows:[
+        {name:"Scraper site · product page", meta:"DMCA filed Mon", st:"IN REVIEW", stc:"wait"},
+        {name:"Stolen FAQ content", meta:"counsel sent · 48h window", st:"AWAITING", stc:"wait"},
+        {name:"Fake review cluster", meta:"platform ticket open", st:"ESCALATED", stc:"risk"},
+        {name:"Old sensitive index", meta:"removal confirmed Fri", st:"RESOLVED", stc:"done"},
+        {name:"Mirror domain", meta:"reported · no action yet", st:"PENDING", stc:"wait"}
+      ]
+    },
+    {
+      icon:"⚙", icBg:"rgba(55,208,220,.15)",
+      title:"Process & Cadence", desc:"The workflow we run",
+      count:"runbook",
+      rows:[
+        {name:"Outreach sweep · Mon 09:00 IST", meta:"pitch + follow-up digest", st:"SCHED", stc:"done"},
+        {name:"Reddit check · daily 12:00", meta:"track new + unanswered", st:"SCHED", stc:"done"},
+        {name:"Takedown review · Fri 17:00", meta:"escalate stale requests", st:"DUE", stc:"wait"},
+        {name:"Monthly report · day 1", meta:"published count, rev, resolved", st:"UPCOMING", stc:"todo"}
+      ]
+    }
+  ]
+};
+
+/* ---- Render (no manual HTML editing needed) ---- */
+var chipsEl = document.getElementById("chips");
+TRACKER.chips.forEach(function(c){ chipsEl.innerHTML += '<span class="chip">'+c+'</span>'; });
+chipsEl.innerHTML += '<span class="chip">updated · '+TRACKER.updated+'</span>';
+
+var sumEl = document.getElementById("sum");
+TRACKER.summary.forEach(function(s){
+  sumEl.innerHTML += '<div class="stat"><div class="k">'+s.k+'</div><div class="v">'+s.v+'</div><div class="chg'+(s.down?" down":"")+'">'+s.chg+'</div></div>';
+});
+
+var grid = document.getElementById("grid");
+TRACKER.sections.forEach(function(sec){
+  var rows = "";
+  sec.rows.forEach(function(r){
+    rows += '<div class="row"><span class="name" style="white-space:normal">'+r.name+'</span><span class="meta" style="white-space:normal">'+r.meta+'</span><span class="st '+r.stc+'">'+r.st+'</span></div>';
+  });
+  grid.innerHTML += '<div class="card"><div class="card-h"><div class="ic" style="background:'+sec.icBg+'">'+sec.icon+'</div>'+
+    '<div><div class="t">'+sec.title+'</div><div class="d">'+sec.desc+'</div></div>'+
+    '<span class="count">'+sec.count+'</span></div>'+rows+'</div>';
+});
+
+document.getElementById("legend").innerHTML =
+  '<span>Status:</span>'+
+  '<span class="st done">DONE</span>'+
+  '<span class="st todo">TODO</span>'+
+  '<span class="st wait">IN PROGRESS</span>'+
+  '<span class="st risk">NEEDS ACTION</span>';
+</script>
 </body>
 </html>
