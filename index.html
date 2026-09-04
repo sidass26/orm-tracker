@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ORM Radar · Online Reputation Management</title>
+<style>
+  :root{
+    --bg:#0f1115; --card:#171b22; --card2:#1d222c;
+    --fg:#e8ecf1; --muted:#8b93a3; --border:#262c38;
+    --accent:#4f8cff; --green:#3ecf8e; --red:#ff5d5d;
+    --amber:#f5a742; --purple:#a78bfa; --cyan:#35d0dc;
+    --shadow:0 6px 18px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-font-smoothing:antialiased}
+  body{background:var(--bg);color:var(--fg);font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;padding:24px 20px 48px}
+  .wrap{max-width:1080px;margin:0 auto}
+  header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding-bottom:6px}
+  .logo{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--purple));font-weight:800;color:#fff;font-size:18px}
+  h1{font-size:20px;font-weight:800;letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:12.5px}
+  .pill{font:inherit;padding:4px 9px;border-radius:999px;font-size:11px;font-weight:600;display:inline-flex;align-items:center;gap:5px}
+  .pill::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+  .pill.live{color:var(--green);background:rgba(62,207,142,.14)}
+  .pill.v2{color:var(--accent);background:rgba(79,140,255,.14)}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .chip{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;color:var(--muted);background:var(--card);border:1px solid var(--border);padding:4px 9px;border-radius:8px}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}
+  @media(max-width:760px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);padding:0;overflow:hidden}
+  .card-h{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--border)}
+  .ic{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;flex:0 0 auto}
+  .card-h .t{font-size:14px;font-weight:700}
+  .card-h .d{color:var(--muted);font-size:12px}
+  .count{font-size:11.5px;color:var(--muted);margin-left:auto}
+  .badge{font-size:10px;font-weight:700;color:var(--accent);background:rgba(79,140,255,.14);border-radius:999px;padding:2px 7px}
+  .row{display:flex;align-items:center;gap:9px;padding:9px 14px;border-bottom:1px solid rgba(38,44,56,.5);background:var(--card2)}
+  .row:last-child{border-bottom:none}
+  .dot{width:9px;height:9px;border-radius:50%;flex:0 0 auto}
+  .dot.g{background:var(--green)} .dot.r{background:var(--red)} .dot.a{background:var(--amber)} .dot.b{background:var(--accent)} .dot.p{background:var(--purple)} .dot.c{background:var(--cyan)}
+  .row .name{font-weight:600;font-size:13px}
+  .row .meta{color:var(--muted);font-size:12px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tag{font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:6px;background:rgba(139,147,163,.13);color:var(--muted);border:1px solid var(--border)}
+  .tag.neg{background:rgba(255,93,93,.14);color:var(--red)}
+  .tag.pos{background:rgba(62,207,142,.14);color:var(--green)}
+  .tag.act{background:rgba(245,167,66,.14);color:var(--amber)}
+  .tag.todo{background:rgba(79,140,255,.14);color:var(--accent)}
+  .num{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:var(--fg);font-weight:700}
+  .progress{height:7px;background:rgba(38,44,56,.6);border-radius:99px;overflow:hidden;position:relative}
+  .progress span{display:block;height:100%;background:linear-gradient(90deg,var(--amber),var(--green));width:0}
+  .metric{display:flex;align-items:center;gap:10px}
+  .metric .lbl{font-size:11px;color:var(--muted)}
+  .metric .val{font-size:17px;font-weight:800}
+  .cardsum{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+  .stat{background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:12px 14px}
+  .stat .k{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+  .stat .v{font-size:23px;font-weight:800;line-height:1.15}
+  .stat .v small{font-size:11px;color:var(--muted)}
+  .stat .chg{font-size:11px;color:var(--green);font-weight:700}
+  .stat .chg.down{color:var(--red)}
+  footer{color:var(--muted);font-size:11.5px;margin-top:26px;line-height:1.7}
+  .legend{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:11px;color:var(--muted)}
+  .legend .pill{font-size:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="logo">R</div>
+    <div>
+      <h1>ORM Radar</h1>
+      <div class="sub">Online Reputation Management · shared dashboard</div>
+    </div>
+    <span class="pill live">Live</span>
+    <span class="pill v2">Weekly refresh</span>
+  </header>
+
+  <div class="chips">
+    <span class="chip">mention-monitor</span>
+    <span class="chip">reviews-radar</span>
+    <span class="chip">pr-watch</span>
+    <span class="chip">toolkit</span>
+    <span class="chip">updated · Fri Sep 04 2026</span>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="cardsum">
+    <div class="stat"><div class="k">Mentions · 7d</div><div class="v">184 <small>+23%</small></div><div class="chg">▲ vs last wk</div></div>
+    <div class="stat"><div class="k">Sentiment</div><div class="v">72 <small>/100</small></div><div class="chg">▲ +4</div></div>
+    <div class="stat"><div class="k">Avg rating</div><div class="v">4.6 <small>★</small></div><div class="chg">▲ +0.1</div></div>
+    <div class="stat"><div class="k">Open responses</div><div class="v">9</div><div class="chg down">▼ 3 new</div></div>
+  </div>
+
+  <div class="grid">
+
+    <!-- 1. Mention monitoring -->
+    <div class="card">
+      <div class="card-h"><div class="ic" style="background:rgba(79,140,255,.15)">📣</div>
+        <div><div class="t">Mention Monitor</div><div class="d">Brand mentions, sentiment, reach</div></div>
+        <span class="count">12 shown</span></div>
+      <div class="row"><span class="dot b"></span><span class="name">Product launch review</span><span class="meta">TechCrunch · 48k reach</span><span class="tag pos">POS</span></div>
+      <div class="row"><span class="dot a"></span><span class="name">Pricing thread</span><span class="meta">Reddit r/SaaS · 214 replies</span><span class="tag act">MIXED</span></div>
+      <div class="row"><span class="dot r"></span><span class="name">Support complaint</span><span class="meta">Twitter/X · 12k reach</span><span class="tag neg">NEG</span></div>
+      <div class="row"><span class="dot b"></span><span class="name">Case study shoutout</span><span class="meta">LinkedIn · 9k reach</span><span class="tag pos">POS</span></div>
+      <div class="row"><span class="dot c"></span><span class="name">Podcast mention</span><span class="meta">Indie Hackers · 6k reach</span><span class="tag pos">POS</span></div>
+      <div class="row"><span class="dot a"></span><span class="name">Feature request thread</span><span class="meta">HN · 89 replies</span><span class="tag act">MIXED</span></div>
+    </div>
+
+    <!-- 2. Reviews radar -->
+    <div class="card">
+      <div class="card-h"><div class="ic" style="background:rgba(245,167,66,.15)">⭐</div>
+        <div><div class="t">Reviews Radar</div><div class="d">Platforms, ratings, responses due</div></div>
+        <span class="count">5 platforms</span></div>
+      <div class="row"><span class="dot g"></span><span class="name">G2</span><span class="meta">4.7 ★ · 14 reviews</span><span class="num">4.7</span></div>
+      <div class="row"><span class="dot g"></span><span class="name">Product Hunt</span><span class="meta">4.9 ★ · 61 upvotes</span><span class="tag todo">2 todo</span></div>
+      <div class="row"><span class="dot a"></span><span class="name">Trustpilot</span><span class="meta">4.2 ★ · 31 reviews</span><span class="tag todo">1 todo</span></div>
+      <div class="row"><span class="dot a"></span><span class="name">Capterra</span><span class="meta">4.4 ★ · 9 reviews</span><span class="num">4.4</span></div>
+      <div class="row"><span class="dot r"></span><span class="name">App Store</span><span class="meta">3.8 ★ · 22 reviews</span><span class="tag neg">Watch</span></div>
+    </div>
+
+    <!-- 3. PR / competitor watch -->
+    <div class="card">
+      <div class="card-h"><div class="ic" style="background:rgba(55,208,220,.15)">📰</div>
+        <div><div class="t">PR &amp; Competitor Watch</div><div class="d">Coverage, launches, reputation events</div></div>
+        <span class="count">6 events</span></div>
+      <div class="row"><span class="dot r"></span><span class="name">Competitor X — outage</span><span class="meta">Reputation risk opp</span><span class="tag act">Watch</span></div>
+      <div class="row"><span class="dot b"></span><span class="name">Press release · Series B</span><span class="meta">PR Newswire · 22k reach</span><span class="tag pos">POS</span></div>
+      <div class="row"><span class="dot a"></span><span class="name">Competitor Y — pricing shift</span><span class="meta">Migration angle</span><span class="tag act">Watch</span></div>
+      <div class="row"><span class="dot b"></span><span class="name">Editorial slot</span><span class="meta">Slack CTO blog · 30k reach</span><span class="tag pos">POS</span></div>
+      <div class="row"><span class="dot c"></span><span class="name">News cycle · data breach buzz</span><span class="meta">Vertical-wide · risk</span><span class="tag act">Monitor</span></div>
+    </div>
+
+    <!-- 4. Toolkit / process -->
+    <div class="card">
+      <div class="card-h"><div class="ic" style="background:rgba(167,139,250,.15)">🧰</div>
+        <div><div class="t">Toolkit &amp; Process</div><div class="d">Playbooks, escalation, tooling</div></div>
+        <span class="badge">REF</span></div>
+      <div class="row"><span class="dot p"></span><span class="name">Escalation — 3× ⚠ reply within 4h</span><span class="meta">Playbook v2</span><span class="tag todo">Due</span></div>
+      <div class="row"><span class="dot p"></span><span class="name">Mention sweep — Mon 09:00 IST</span><span class="meta">Cron · google alerts + X + reddit</span><span class="tag act">Scheduled</span></div>
+      <div class="row"><span class="dot p"></span><span class="name">Reviews round-up — Fri 17:00</span><span class="meta">Cron · weekly digest</span><span class="tag act">Scheduled</span></div>
+      <div class="row"><span class="dot p"></span><span class="name">Sentiment model</span><span class="meta">distilbert · threshold 0.7</span><span class="tag pos">OK</span></div>
+      <div class="row"><span class="dot p"></span><span class="name">Media/PR contact list</span><span class="meta">Notion · 34 contacts</span><span class="tag todo">Update</span></div>
+    </div>
+  </div>
+
+  <div class="legend" style="margin-top:16px">
+    <span class="pill live">POS · positive</span>
+    <span class="tag" style="background:rgba(255,93,93,.14);color:var(--red)">NEG · negative</span>
+    <span class="tag act">MIXED / WATCH</span>
+    <span class="tag todo">ACTION DUE</span>
+  </div>
+
+  <footer>
+    ORM Radar · tracker for all things online reputation. Mention monitoring, reviews, PR/competitor watch, and process tooling.
+    Built as a shared dashboard · refreshed weekly · hold to request an edit.
+  </footer>
+</div>
+</body>
+</html>
