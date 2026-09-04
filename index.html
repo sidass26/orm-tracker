@@ -39,11 +39,10 @@
   .card-h .t{font-size:14px;font-weight:700}
   .card-h .d{color:var(--muted);font-size:12px}
   .count{font-size:11.5px;color:var(--muted);margin-left:auto}
-  .badge{font-size:10px;font-weight:700;color:var(--accent);background:rgba(79,140,255,.14);border-radius:999px;padding:2px 7px}
   .row{display:flex;align-items:center;gap:9px;padding:9px 14px;border-bottom:1px solid rgba(38,44,56,.5);background:var(--card2)}
   .row:last-child{border-bottom:none}
   .row .name{font-weight:600;font-size:13px}
-  .row .meta{color:var(--muted);font-size:12px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .row .meta{color:var(--muted);font-size:12px;flex:1;white-space:normal}
   a{color:var(--accent);text-decoration:none}
   .st{font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:999px;min-width:74px;text-align:center}
   .st.done{color:var(--green);background:rgba(62,207,142,.15)}
@@ -62,7 +61,7 @@
     <div class="logo">R</div>
     <div>
       <h1>ORM Tracker</h1>
-      <div class="sub">Online reputation management · everything we do, in one place</div>
+      <div class="sub">Online reputation management · every effort, sourced from Slack + this log</div>
     </div>
     <span class="pill live">Live</span>
     <span class="pill v2">Weekly refresh</span>
@@ -75,8 +74,8 @@
   <div class="legend" id="legend"></div>
 
   <footer>
-    ORM Tracker · paid backlinks, creator content, blog outreach, reddit, and takedowns in one shared view.
-    Anything changes — paid link confirmed, a post goes live, a video published — it gets logged here.
+    ORM Tracker · paid backlinks, creator outreach, reputation channels, and takedowns in one shared view.
+    Sourced from Headout Slack (Delphi) + Siddhesh's active log. Anything changes, it gets logged here.
   </footer>
 </div>
 
@@ -85,15 +84,15 @@
 var TRACKER = {
   updated: "Fri Sep 04 2026",
   chips: [
-    "content-backlinks", "creator-trips", "youtube",
-    "blog-outreach", "reddit-comments", "takedown", "process"
+    "backlinks", "creator-outreach", "reputation",
+    "takedown", "process"
   ],
   summary: [
-    {k:"Paid backlinks", v:1, chg:"▼ 1 paid"},
-    {k:"Creator posts",  v:1, chg:"▲ live soon"},
-    {k:"YouTube videos", v:2, chg:"▲ scheduled"},
-    {k:"Reddit comments",v:48, chg:"rev ▲ 2.1k"},
-    {k:"Open takedowns", v:5, chg:"▲ 2 new"}
+    {k:"Paid backlinks", v:1, chg:"▼ robfromjapan.com"},
+    {k:"Creators approved", v:"~900", chg:"▼ 5k+ signups"},
+    {k:"Channels monitored", v:8, chg:"▲ incl TripAdvisor"},
+    {k:"Takedowns resolved", v:"15+", chg:"▼ via Corsearch"},
+    {k:"Open takedowns", v:3, chg:"▲ 1 failed"}
   ],
   sections: [
     {
@@ -107,42 +106,43 @@ var TRACKER = {
       ]
     },
     {
-      icon:"✍", icBg:"rgba(79,140,255,.15)",
-      title:"Blog Outreach", desc:"Contacts, pitches, follow-ups",
-      count:"34 total",
+      icon:"📣", icBg:"rgba(79,140,255,.15)",
+      title:"Creator & Influencer Outreach", desc:"Campaigns, onboarded creators",
+      count:"global",
       rows:[
-        {name:"TechCrunch", meta:"pitched Thu · follow-up Mon", st:"FOLLOW-UP", stc:"wait"},
-        {name:"The Verge", meta:"accepted · draft due Fri", st:"DRAFTING", stc:"wait"},
-        {name:"VentureBeat", meta:"published Wed · 21k views", st:"PUBLISHED", stc:"done"},
-        {name:"TechRadar", meta:"no reply ×2 · close it out", st:"REJECTED", stc:"risk"},
-        {name:"Mashable", meta:"sent Mon · waiting", st:"PITCHED", stc:"todo"},
-        {name:"Ars Technica", meta:"editor reply · needs data", st:"WAITING", stc:"wait"}
+        {name:"Japan · 6 YouTube creators", meta:"locked in · shortlist @jessicacarrielee 176K, @retrogamecentercx, @ohakojp (Aug–Sep 26)", st:"IN PROGRESS", stc:"wait"},
+        {name:"Japan · guest posts ×2", meta:"+ 3 blog copies in progress incl TheRealJapan", st:"IN PROGRESS", stc:"wait"},
+        {name:"Museum of Illusions", meta:"thousands of posts · 40 locations · paid + VIP + gifting", st:"DONE", stc:"done"},
+        {name:"F1 GP campaigns", meta:"Azerbaijan (219K + 40K) · Miami (@LaunchMode123 168K) · Austin meme strategy", st:"DONE", stc:"done"},
+        {name:"Wanderfest UAE", meta:"19 creators · flagship @khalidalameri AED 45K", st:"DONE", stc:"done"},
+        {name:"Disneyland Paris · Tara Michelle", meta:"US-audience partnership (2026)", st:"ACTIVE", stc:"done"},
+        {name:"London West End", meta:"50 reached · 10–15 onboarding target", st:"ONGOING", stc:"wait"}
       ]
     },
     {
-      icon:"👆", icBg:"rgba(245,167,66,.15)",
-      title:"Reddit Comments", desc:"Tracked comments, reach, replies",
-      count:"48 tracked",
+      icon:"⭐", icBg:"rgba(245,167,66,.15)",
+      title:"Reputation & Reviews", desc:"Tracked channels & strategy",
+      count:"8 channels",
       rows:[
-        {name:"r/startups · \"why our stack\"", meta:"rev 340 · 6 replies", st:"LIVE", stc:"done"},
-        {name:"r/SaaS · pricing thread", meta:"rev 210 · reply pending", st:"NEEDS REPLY", stc:"wait"},
-        {name:"r/technology · AMA pitch", meta:"mods asked · not sent", st:"TODO", stc:"todo"},
-        {name:"r/indiehackers · launch", meta:"rev 890 · top", st:"TOP", stc:"done"},
-        {name:"r/bigtech · negative", meta:"flagged · needs reply", st:"REPLY", stc:"risk"}
+        {name:"TripAdvisor forums", meta:'negative "is headout reliable?" threads ranking in Google · SG thread tracked', st:"MONITOR", stc:"wait"},
+        {name:"Trustpilot", meta:"~800 reviews/mo · auto intake via #team-orm-trustpilot-social (292 members)", st:"ACTIVE", stc:"done"},
+        {name:"PlayStore / App Store", meta:"50–55% of redirect traffic · automated alerts", st:"MONITOR", stc:"wait"},
+        {name:"Feefo", meta:"8-year-old legacy reviews tracked", st:"MONITOR", stc:"wait"},
+        {name:"ProductReview.com.au / ProductHunt", meta:"tracked", st:"MONITOR", stc:"wait"},
+        {name:"Reddit strategy in dev", meta:"r/headout megathread + verified booking flair · AI search presence goal", st:"IN PROGRESS", stc:"wait"}
       ]
     },
     {
       icon:"🚫", icBg:"rgba(255,93,93,.15)",
-      title:"Takedowns", desc:"DMCA and other requests, status",
-      count:"5 open",
+      title:"Takedowns", desc:"Vendor work + removals",
+      count:"Corsearch vendor",
       rows:[
-        {name:"TripAdvisor · Is Headout reliable (SG)", meta:'<a href="https://www.tripadvisor.in/ShowTopic-g294262-i1747-k12006858-o50-Is_headout_com_reliable-Singapore.html">tripadvisor thread</a> · external vendor attempted · <b>failed</b>', st:"FAILED", stc:"risk"},
+        {name:"TripAdvisor · Is Headout reliable (SG)", meta:'<a href="https://www.tripadvisor.in/ShowTopic-g294262-i1747-k12006858-o50-Is_headout_com_reliable-Singapore.html">thread</a> · external vendor attempted · failed', st:"FAILED", stc:"risk"},
         {name:"Reddit · r/GrandPrixTravel is_headout_com_legit", meta:'<a href="https://www.reddit.com/r/GrandPrixTravel/comments/11iuogs/is_headoutcom_legit/">thread</a> · external vendor now focused here', st:"IN PROGRESS", stc:"wait"},
-        {name:"Scraper site · product page", meta:"DMCA filed Mon", st:"IN REVIEW", stc:"wait"},
-        {name:"Stolen FAQ content", meta:"counsel sent · 48h window", st:"AWAITING", stc:"wait"},
-        {name:"Fake review cluster", meta:"platform ticket open", st:"ESCALATED", stc:"risk"},
-        {name:"Old sensitive index", meta:"removal confirmed Fri", st:"RESOLVED", stc:"done"},
-        {name:"Mirror domain", meta:"reported · no action yet", st:"PENDING", stc:"wait"}
+        {name:"Mirror / scraper domains", meta:"15+ removed · headout.in .org .net .biz .de .fr .es .it .nl etc", st:"RESOLVED", stc:"done"},
+        {name:"Affiliate domain enforcement", meta:"arc-detriomphe.paris + arcdetriomphetickets.com removed · ngongpingtickets.com cut", st:"RESOLVED", stc:"done"},
+        {name:"Corsearch vendor", meta:"$1,500/mo retainer · $50–75 per takedown", st:"ACTIVE", stc:"done"},
+        {name:"Trustpilot fake reviews", meta:"removal process active (trustpilot-social channel)", st:"ACTIVE", stc:"done"}
       ]
     },
     {
