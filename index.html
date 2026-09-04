@@ -43,6 +43,7 @@
   .row:last-child{border-bottom:none}
   .row .name{font-weight:600;font-size:13px}
   .row .meta{color:var(--muted);font-size:12px;flex:1;white-space:normal}
+  .src{color:var(--cyan);font-size:11px;opacity:.9;white-space:normal}
   a{color:var(--accent);text-decoration:none}
   .st{font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:999px;min-width:74px;text-align:center}
   .st.done{color:var(--green);background:rgba(62,207,142,.15)}
@@ -103,9 +104,9 @@ var TRACKER = {
       title:"Backlinks & Content", desc:"Paid links, creator trips, video",
       count:"3 active",
       rows:[
-        {name:"RobFromJapan", meta:'<a href="https://robfromjapan.com">robfromjapan.com</a> · 1 paid backlink', st:"PAID", stc:"done"},
-        {name:"Victoria · That Mum Travel Life", meta:'<a href="https://thatmumtravellife.com">thatmumtravellife.com</a> · sent to Disneyland · blog + YouTube to go live', st:"IN PRODUCTION", stc:"wait"},
-        {name:"YouTube videos ×2", meta:"scheduled to go live · link TBD once published", st:"SCHEDULED", stc:"todo"}
+        {name:"RobFromJapan", meta:'<a href="https://robfromjapan.com">robfromjapan.com</a> · 1 paid backlink', src:"paid link contract · Sep 2026", st:"PAID", stc:"done"},
+        {name:"Victoria · That Mum Travel Life", meta:'<a href="https://thatmumtravellife.com">thatmumtravellife.com</a> · blog + YouTube to go live', src:"sent to Disneyland · host trip Sep 2026", st:"IN PRODUCTION", stc:"wait"},
+        {name:"YouTube videos ×2", meta:"scheduled · links TBD once live", src:"creator side of Victoria trip", st:"SCHEDULED", stc:"todo"}
       ]
     },
     {
@@ -113,13 +114,13 @@ var TRACKER = {
       title:"Creator & Influencer Outreach", desc:"Campaigns, onboarded creators",
       count:"global",
       rows:[
-        {name:"Japan · 6 YouTube creators", meta:"locked in · shortlist @jessicacarrielee 176K, @retrogamecentercx, @ohakojp (Aug–Sep 26)", st:"IN PROGRESS", stc:"wait"},
-        {name:"Japan · guest posts ×2", meta:"+ 3 blog copies in progress incl TheRealJapan", st:"IN PROGRESS", stc:"wait"},
-        {name:"Museum of Illusions", meta:"thousands of posts · 40 locations · paid + VIP + gifting", st:"DONE", stc:"done"},
-        {name:"F1 GP campaigns", meta:"Azerbaijan (219K + 40K) · Miami (@LaunchMode123 168K) · Austin meme strategy", st:"DONE", stc:"done"},
-        {name:"Wanderfest UAE", meta:"19 creators · flagship @khalidalameri AED 45K", st:"DONE", stc:"done"},
-        {name:"Disneyland Paris · Tara Michelle", meta:"US-audience partnership (2026)", st:"ACTIVE", stc:"done"},
-        {name:"London West End", meta:"50 reached · 10–15 onboarding target", st:"ONGOING", stc:"wait"}
+        {name:"Japan · 6 YouTube creators", meta:"shortlist @jessicacarrielee 176K, @retrogamecentercx, @ohakojp", src:"Headout Slack · Aug–Sep 26", st:"IN PROGRESS", stc:"wait"},
+        {name:"Japan · guest posts ×2", meta:"+ 3 blog copies in progress incl TheRealJapan", src:"Headout Slack · Aug–Sep 26", st:"IN PROGRESS", stc:"wait"},
+        {name:"Museum of Illusions", meta:"thousands of posts · 40 locations · paid + VIP + gifting", src:"Headout Slack", st:"DONE", stc:"done"},
+        {name:"F1 GP campaigns", meta:"Azerbaijan (219K + 40K) · Miami (@LaunchMode123 168K) · Austin meme strategy", src:"Headout Slack", st:"DONE", stc:"done"},
+        {name:"Wanderfest UAE", meta:"19 creators · flagship @khalidalameri AED 45K", src:"Headout Slack · Jan–Feb 23", st:"DONE", stc:"done"},
+        {name:"Disneyland Paris · Tara Michelle", meta:"US-audience partnership", src:"Headout Slack · 2026", st:"ACTIVE", stc:"done"},
+        {name:"London West End", meta:"50 reached · 10–15 onboarding target", src:"Headout Slack", st:"ONGOING", stc:"wait"}
       ]
     },
     {
@@ -127,12 +128,12 @@ var TRACKER = {
       title:"Reputation & Reviews", desc:"Tracked channels & strategy",
       count:"8 channels",
       rows:[
-        {name:"TripAdvisor forums", meta:'negative "is headout reliable?" threads ranking in Google · SG thread tracked', st:"MONITOR", stc:"wait"},
-        {name:"Trustpilot", meta:"~800 reviews/mo · auto intake via #team-orm-trustpilot-social (292 members)", st:"ACTIVE", stc:"done"},
-        {name:"PlayStore / App Store", meta:"50–55% of redirect traffic · automated alerts", st:"MONITOR", stc:"wait"},
-        {name:"Feefo", meta:"8-year-old legacy reviews tracked", st:"MONITOR", stc:"wait"},
-        {name:"ProductReview.com.au / ProductHunt", meta:"tracked", st:"MONITOR", stc:"wait"},
-        {name:"Reddit strategy in dev", meta:"r/headout megathread + verified booking flair · AI search presence goal", st:"IN PROGRESS", stc:"wait"}
+        {name:"TripAdvisor forums", meta:'negative "is headout reliable?" threads ranking in Google', src:"Headout Slack · ORM monitor", st:"MONITOR", stc:"wait"},
+        {name:"Trustpilot", meta:"~800 reviews/mo · auto intake", src:'Slack #team-orm-trustpilot-social · 292 members', st:"ACTIVE", stc:"done"},
+        {name:"PlayStore / App Store", meta:"50–55% of redirect traffic · automated alerts", src:"Headout Slack", st:"MONITOR", stc:"wait"},
+        {name:"Feefo", meta:"8-year-old legacy reviews tracked", src:"Headout Slack", st:"MONITOR", stc:"wait"},
+        {name:"ProductReview.au / ProductHunt", meta:"tracked", src:"Headout Slack", st:"MONITOR", stc:"wait"},
+        {name:"Reddit strategy in dev", meta:"r/headout megathread + verified booking flair · AI search presence goal", src:"Headout Slack", st:"IN PROGRESS", stc:"wait"}
       ]
     },
     {
@@ -140,12 +141,12 @@ var TRACKER = {
       title:"Takedowns", desc:"Vendor work + removals",
       count:"Corsearch vendor",
       rows:[
-        {name:"TripAdvisor · Is Headout reliable (SG)", meta:'<a href="https://www.tripadvisor.in/ShowTopic-g294262-i1747-k12006858-o50-Is_headout_com_reliable-Singapore.html">thread</a> · external vendor attempted · failed', st:"FAILED", stc:"risk"},
-        {name:"Reddit · r/GrandPrixTravel is_headout_com_legit", meta:'<a href="https://www.reddit.com/r/GrandPrixTravel/comments/11iuogs/is_headoutcom_legit/">thread</a> · external vendor now focused here', st:"IN PROGRESS", stc:"wait"},
-        {name:"Mirror / scraper domains", meta:"15+ removed · headout.in .org .net .biz .de .fr .es .it .nl etc", st:"RESOLVED", stc:"done"},
-        {name:"Affiliate domain enforcement", meta:"arc-detriomphe.paris + arcdetriomphetickets.com removed · ngongpingtickets.com cut", st:"RESOLVED", stc:"done"},
-        {name:"Corsearch vendor", meta:"$1,500/mo retainer · $50–75 per takedown", st:"ACTIVE", stc:"done"},
-        {name:"Trustpilot fake reviews", meta:"removal process active (trustpilot-social channel)", st:"ACTIVE", stc:"done"}
+        {name:"TripAdvisor · Is Headout reliable (SG)", meta:'<a href="https://www.tripadvisor.in/ShowTopic-g294262-i1747-k12006858-o50-Is_headout_com_reliable-Singapore.html">thread</a> · vendor attempt failed', src:"logged by Siddhesh · Sep 4 26", st:"FAILED", stc:"risk"},
+        {name:"Reddit · r/GrandPrixTravel is_headout_com_legit", meta:'<a href="https://www.reddit.com/r/GrandPrixTravel/comments/11iuogs/is_headoutcom_legit/">thread</a> · vendor now focused here', src:"logged by Siddhesh · Sep 4 26", st:"IN PROGRESS", stc:"wait"},
+        {name:"Mirror / scraper domains", meta:"15+ removed · headout.in .org .net .biz .de .fr .es .it .nl etc", src:"Corsearch vendor · Headout Slack", st:"RESOLVED", stc:"done"},
+        {name:"Affiliate domain enforcement", meta:"arc-detriomphe.paris + arcdetriomphetickets.com removed · ngongpingtickets.com cut", src:"Headout Slack · Aug 26", st:"RESOLVED", stc:"done"},
+        {name:"Corsearch vendor", meta:"$1,500/mo retainer · $50–75 per takedown", src:"vendor contract · Headout Slack", st:"ACTIVE", stc:"done"},
+        {name:"Trustpilot fake reviews", meta:"removal process active", src:"Slack trustpilot-social channel", st:"ACTIVE", stc:"done"}
       ]
     },
     {
@@ -182,7 +183,8 @@ var grid = document.getElementById("grid");
 TRACKER.sections.forEach(function(sec){
   var rows = "";
   sec.rows.forEach(function(r){
-    rows += '<div class="row"><span class="name" style="white-space:normal">'+r.name+'</span><span class="meta" style="white-space:normal">'+r.meta+'</span><span class="st '+r.stc+'">'+r.st+'</span></div>';
+    var src = r.src ? ' <span class="src">↳ '+r.src+'</span>' : '';
+    rows += '<div class="row"><span class="name" style="white-space:normal">'+r.name+'</span><span class="meta" style="white-space:normal">'+r.meta+src+'</span><span class="st '+r.stc+'">'+r.st+'</span></div>';
   });
   grid.innerHTML += '<div class="card"><div class="card-h"><div class="ic" style="background:'+sec.icBg+'">'+sec.icon+'</div>'+
     '<div><div class="t">'+sec.title+'</div><div class="d">'+sec.desc+'</div></div>'+
