@@ -84,16 +84,17 @@
 <script>
 /* ---- DATA. Edit entries here to log new items. ---- */
 var TRACKER = {
-  updated: "Mon Sep 28 2026",
+  updated: "Wed Oct 07 2026",
   /* --- EDIT THIS SINGLE FIELD each week for Varun's Monday summary. --- */
   varun_monday: "This week: 3 paid backlinks live (robfromjapan.com 399 GBP, globetrottergirls.com Colosseum review USD 399, pierreblake.com Paris tours review USD 413, all but the first via presswhizz broker). Victoria (That Mum Travel Life) Disneyland trip first blog LIVE (USD 500 for 2 posts), one Disneyland-specific post still to come + 2 YouTube videos. Takedown status: TripAdvisor SG thread attempt failed (vendor), vendor refocused on r/GrandPrixTravel. 15+ mirror domains already resolved via Corsearch vendor. Reddit strategy for r/headout in development.",
   chips: [
-    "backlinks", "creator-outreach", "reputation",
-    "takedown", "process"
+    "backlinks", "creator-outreach", "blogger-outreach",
+    "reputation", "takedown", "process"
   ],
   summary: [
     {k:"Paid backlinks", v:3, chg:"▼ robfromjapan.com + globetrottergirls.com + pierreblake.com"},
     {k:"Creators approved", v:"~900", chg:"▼ 5k+ signups"},
+    {k:"Blogger outreach", v:9, chg:"▲ Ahrefs shortlist · emailed 7 Oct 26"},
     {k:"Channels monitored", v:8, chg:"▲ incl TripAdvisor"},
     {k:"Takedowns resolved", v:"15+", chg:"▼ via Corsearch"},
     {k:"Open takedowns", v:4, chg:"▲ headout-enjoy.com NEW"},
@@ -166,6 +167,22 @@ var TRACKER = {
         {name:"Reddit check · daily 12:00", meta:"track new + unanswered", st:"SCHED", stc:"done"},
         {name:"Takedown review · Fri 17:00", meta:"escalate stale requests", st:"DUE", stc:"wait"},
         {name:"Monthly report · day 1", meta:"published count, rev, resolved", st:"UPCOMING", stc:"todo"}
+      ]
+    },
+    {
+      icon:"✉️", icBg:"rgba(167,139,250,.15)",
+      title:"Blogger Outreach · Ahrefs", desc:"Review-blogger acquisition via competitor backlinks",
+      count:"9 emailed",
+      rows:[
+        {name:"Where the Morgans", meta:'<a href="https://wherearethosemorgans.com/go-city-rome-explorer-pass-review/">Go City Rome review</a> · mark@ · DR37 · 212K dom', src:"Ahrefs shortlist · sent 7 Oct 26", st:"EMAILED", stc:"todo"},
+        {name:"That Travel (UK)", meta:'<a href="https://thattravel.co.uk/prague-go-city-pass/">Prague Go City guide</a> · thattravelbusiness@gmail · DR28 · 78K', src:"Ahrefs shortlist · sent 7 Oct 26", st:"EMAILED", stc:"todo"},
+        {name:"Sixty and Me · Margarita", meta:'<a href="https://sixtyandme.com/london-go-city-pass-review/">London Go City review</a> · caroline@ · DR71 · 40K', src:"Ahrefs shortlist · sent 7 Oct 26", st:"EMAILED", stc:"todo"},
+        {name:"La Jolla Mom", meta:'<a href="https://lajollamom.com/go-san-diego-pass/">Go City San Diego</a> · contact@ · DR57 · 36K', src:"Ahrefs shortlist · sent 7 Oct 26", st:"EMAILED", stc:"todo"},
+        {name:"To Thot or Not · Joyce", meta:'<a href="https://tothotornot.com/klook-review/">Klook review</a> · hello@ · DR39 · 15K', src:"Ahrefs shortlist · sent 7 Oct 26", st:"EMAILED", stc:"todo"},
+        {name:"What the Redhead Said · Donna", meta:'<a href="https://whattheredheadsaid.com/go-city-new-york-explorer-pass/">Go City NY pass</a> · donna@ · DR38 · 13K', src:"Ahrefs shortlist · sent 7 Oct 26", st:"EMAILED", stc:"todo"},
+        {name:"I'm Just a Girl 16 · Chloe", meta:'<a href="https://www.imjustagirl16.co.uk/is-the-go-city-new-york-pass-worth-it-how-does-it-work/">Go City NY 2026</a> · chloe@wewriteyourcontent · DR31 · 9.6K', src:"Ahrefs shortlist · sent 7 Oct 26", st:"EMAILED", stc:"todo"},
+        {name:"The Savvy Backpacker · James", meta:'<a href="https://thesavvybackpacker.com/city-guide/barcelona-go-city-pass-review/">Go City Barcelona</a> · james@ · DR52 · 6.9K', src:"Ahrefs shortlist · sent 7 Oct 26", st:"EMAILED", stc:"todo"},
+        {name:"Hidden Holland", meta:'<a href="https://www.hiddenholland.com/go-city-amsterdam-card-review/">Go City Amsterdam local</a> · collaborations@ · DR33 · 5.4K', src:"Ahrefs shortlist · sent 7 Oct 26", st:"EMAILED", stc:"todo"}
       ]
     }
   ]
