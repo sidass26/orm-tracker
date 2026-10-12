@@ -44,6 +44,15 @@
   .row .name{font-weight:600;font-size:13px}
   .row .meta{color:var(--muted);font-size:12px;flex:1;white-space:normal}
   .src{color:var(--cyan);font-size:11px;opacity:.9;white-space:normal}
+  .cat{font-size:10px;font-weight:700;padding:2px 7px;border-radius:6px;white-space:nowrap;flex:0 0 auto}
+  .cat.broker{color:var(--accent);background:rgba(79,140,255,.15)}
+  .cat.direct{color:var(--purple);background:rgba(167,139,250,.15)}
+  .cat.youtube{color:var(--red);background:rgba(255,93,93,.15)}
+  .cat.creator{color:var(--cyan);background:rgba(53,208,220,.15)}
+  .cat.organic{color:var(--green);background:rgba(62,207,142,.15)}
+  .invbar{display:flex;flex-wrap:wrap;gap:7px;padding:10px 14px;background:rgba(0,0,0,.18);border-bottom:1px solid var(--border)}
+  .invbar .b{font-size:11px;font-weight:600;padding:3px 9px;border-radius:8px;background:var(--card2);border:1px solid var(--border);color:var(--muted)}
+  .invbar .b b{color:var(--fg);font-weight:800}
   a{color:var(--accent);text-decoration:none}
   .st{font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:999px;min-width:74px;text-align:center}
   .st.done{color:var(--green);background:rgba(62,207,142,.15)}
@@ -71,6 +80,7 @@
   <div class="chips" id="chips"></div>
   <div class="cardsum" id="sum"></div>
   <div class="card" id="varunCard" style="margin-top:16px"></div>
+  <div class="card" id="invCard" style="margin-top:16px"></div>
   <div class="grid" id="grid"></div>
 
   <div class="legend" id="legend"></div>
@@ -86,33 +96,42 @@
 var TRACKER = {
   updated: "Mon Oct 12 2026",
   /* --- EDIT THIS SINGLE FIELD each week for Varun's Monday summary. --- */
-  varun_monday: "This week: 3 paid backlinks live (robfromjapan.com 399 GBP, globetrottergirls.com Colosseum review USD 399, pierreblake.com Paris tours review USD 413, all but the first via presswhizz broker). Victoria (That Mum Travel Life) Disneyland trip first blog LIVE (USD 500 for 2 posts), one Disneyland-specific post still to come + 2 YouTube videos. Takedown status: both vendor attempts now FAILED - TripAdvisor SG thread failed, and the Reddit r/GrandPrixTravel thread also failed (vendor to return payment). 15+ mirror domains already resolved via Corsearch vendor. Reddit strategy for r/headout in development.",
+  varun_monday: "This week: 3 paid backlinks live (robfromjapan.com 399 GBP, globetrottergirls.com Colosseum review USD 399, pierreblake.com Paris tours review USD 413, all but the first via presswhizz broker). Victoria (That Mum Travel Life) Disneyland trip first blog LIVE (USD 500 for 2 posts), one Disneyland-specific post still to come + 2 YouTube videos. Link inventory: 8 links total, 6 live, 2 pending. By category: paid blogger - broker 3 (all live), paid blogger - direct 3 (all live), YouTube/creator 2 (scheduled). Links added last week (w/c 5 Oct): 0. Takedown status: both vendor attempts now FAILED - TripAdvisor SG thread failed, and the Reddit r/GrandPrixTravel thread also failed (vendor to return payment). 15+ mirror domains already resolved via Corsearch vendor. Reddit strategy for r/headout in development.",
   chips: [
     "backlinks", "creator-outreach", "blogger-outreach",
     "reputation", "takedown", "process"
   ],
   summary: [
-    {k:"Paid backlinks", v:3, chg:"▼ robfromjapan.com + globetrottergirls.com + pierreblake.com"},
+    {k:"Links total", v:0, auto:"linksTotal", chg:"▼ derived from Link Inventory below"},
+    {k:"Links added last week", v:0, auto:"linksLastWeek", chg:"▼ none in 5 to 12 Oct 26"},
     {k:"Creators approved", v:"~900", chg:"▼ 5k+ signups"},
     {k:"Blogger outreach", v:9, chg:"▲ Ahrefs shortlist · emailed 7 Oct 26"},
     {k:"Channels monitored", v:8, chg:"▲ incl TripAdvisor"},
     {k:"Takedowns resolved", v:"15+", chg:"▼ via Corsearch"},
     {k:"Open takedowns", v:4, chg:"▲ headout-enjoy.com NEW"},
   ],
+  /* --- LINK INVENTORY. One entry = one link/placement. cat drives the category tag. --- */
+  links: [
+    {name:"RobFromJapan", cat:"broker", status:"LIVE", count:1, added:"Sep 2026",
+     meta:'<a href="https://robfromjapan.com">robfromjapan.com</a> · GBP 399 · content: <a href="https://docs.google.com/document/d/1U2uuUomvgbqhEpo9vFeYKRkzDy8tr8WFK-dmCEj-2u8/edit?tab=t.0#heading=h.fk0emwvk5p77">Is Headout legit? Japan travellers (doc)</a>',
+     src:"presswhizz broker · Sep 2026"},
+    {name:"GlobeTrotter Girls", cat:"broker", status:"LIVE", count:1, added:"Sep 2026",
+     meta:'<a href="https://globetrottergirls.com/an-honest-headout-review-booking-the-colosseum-when-the-official-site-is-sold-out/">globetrottergirls.com</a> · Colosseum honest review · USD 399',
+     src:"presswhizz broker · Sep 2026"},
+    {name:"Pierre Blake", cat:"broker", status:"LIVE", count:1, added:"Sep 2026",
+     meta:'<a href="https://pierreblake.com/headout-reviews-of-my-paris-tours-in-2026-what-i-liked-and-what-i-did-not/">pierreblake.com</a> · Paris tours 2026 review · USD 413',
+     src:"presswhizz broker · Sep 2026"},
+    {name:"Victoria · That Mum Travel Life", cat:"direct", status:"LIVE", count:2, added:"Sep 2026",
+     meta:'<a href="https://thatmumtravellife.com/2026/09/20/can-you-visit-both-disneyland-paris-parks-in-one-day/">Can you visit both Disneyland Paris parks in one day</a> · 1st blog: <a href="https://docs.google.com/document/d/1QE86WVzftzoei5hVJl1fTjie0a2oJEac8813igyp6kI/edit?tab=t.0#heading=h.82ra7piz6bsf">Is Headout Legit? Disneyland Paris Tickets (doc)</a> · 2 posts paid · USD 500',
+     src:"host trip · direct · Sep 2026"},
+    {name:"TmTL · deals supplier page", cat:"direct", status:"LIVE", count:1, added:"Sep 2026",
+     meta:'<a href="https://thatmumtravellife.com/resources-and-discount-codes/">resources-and-discount-codes</a> · Headout added as deals supplier',
+     src:"Victoria · direct · Sep 2026"},
+    {name:"YouTube videos", cat:"youtube", status:"SCHEDULED", count:2, added:"pending",
+     meta:"Victoria trip creator side · links TBD once live",
+     src:"creator side of Victoria trip"}
+  ],
   sections: [
-    {
-      icon:"🔗", icBg:"rgba(79,140,255,.15)",
-      title:"Backlinks & Content", desc:"Paid links, creator trips, video",
-      count:"6 active",
-      rows:[
-        {name:"RobFromJapan", meta:'<a href="https://robfromjapan.com">robfromjapan.com</a> · GBP 399 · content: <a href="https://docs.google.com/document/d/1U2uuUomvgbqhEpo9vFeYKRkzDy8tr8WFK-dmCEj-2u8/edit?tab=t.0#heading=h.fk0emwvk5p77">Is Headout legit? Japan travellers (doc)</a>', src:"paid link contract · Sep 2026", st:"PAID", stc:"done"},
-        {name:"GlobeTrotter Girls", meta:'<a href="https://globetrottergirls.com/an-honest-headout-review-booking-the-colosseum-when-the-official-site-is-sold-out/">globetrottergirls.com</a> · Colosseum honest review · USD 399', src:"presswhizz broker · Sep 2026", st:"LIVE", stc:"done"},
-        {name:"Pierre Blake", meta:'<a href="https://pierreblake.com/headout-reviews-of-my-paris-tours-in-2026-what-i-liked-and-what-i-did-not/">pierreblake.com</a> · Paris tours 2026 review · USD 413', src:"presswhizz broker · Sep 2026", st:"LIVE", stc:"done"},
-        {name:"Victoria · That Mum Travel Life", meta:'<a href="https://thatmumtravellife.com">thatmumtravellife.com</a> · 1st blog: <a href="https://docs.google.com/document/d/1QE86WVzftzoei5hVJl1fTjie0a2oJEac8813igyp6kI/edit?tab=t.0#heading=h.82ra7piz6bsf">Is Headout Legit? Disneyland Paris Tickets (doc)</a> · 2nd LIVE: <a href="https://thatmumtravellife.com/2026/09/20/can-you-visit-both-disneyland-paris-parks-in-one-day/">Can you visit both Disneyland Paris parks in one day</a>', src:"sent to Disneyland · host trip Sep 2026 · USD 500 for 2 posts", st:"LIVE", stc:"done"},
-        {name:"TmTL · deals supplier", meta:'<a href="https://thatmumtravellife.com/resources-and-discount-codes/">resources-and-discount-codes</a> · Headout added as deals supplier', src:"Victoria · Sep 2026", st:"LIVE", stc:"done"},
-        {name:"YouTube videos ×2", meta:"scheduled · links TBD once live", src:"creator side of Victoria trip", st:"SCHEDULED", stc:"todo"}
-      ]
-    },
     {
       icon:"📣", icBg:"rgba(79,140,255,.15)",
       title:"Creator & Influencer Outreach", desc:"Campaigns, onboarded creators",
@@ -193,10 +212,60 @@ var chipsEl = document.getElementById("chips");
 TRACKER.chips.forEach(function(c){ chipsEl.innerHTML += '<span class="chip">'+c+'</span>'; });
 chipsEl.innerHTML += '<span class="chip">updated · '+TRACKER.updated+'</span>';
 
+/* ---- Link inventory: totals + per-category counts derived from TRACKER.links ---- */
+var LK = TRACKER.links || [];
+var CATS = {
+  broker:{l:"Paid blogger · broker", c:"done"},
+  direct:{l:"Paid blogger · direct", c:"done"},
+  youtube:{l:"YouTube", c:"risk"},
+  creator:{l:"Creator", c:"wait"},
+  organic:{l:"Organic / earned", c:"todo"}
+};
+var CATORDER = ["broker","direct","youtube","creator","organic"];
+var invTotal=0, invLive=0, invPend=0, invLastWk=0, invByCat={};
+var updMs = Date.parse(TRACKER.updated);
+LK.forEach(function(x){
+  var n = x.count || 1;
+  invTotal += n;
+  if(x.status === "LIVE"){ invLive += n; } else { invPend += n; }
+  invByCat[x.cat] = (invByCat[x.cat] || 0) + n;
+  if(x.addedISO && !isNaN(updMs) && (updMs - Date.parse(x.addedISO))/864e5 <= 7){ invLastWk += n; }
+});
+var INVSTATS = {linksTotal:invTotal, linksLastWeek:invLastWk, linksLive:invLive, linksPending:invPend};
+
 var sumEl = document.getElementById("sum");
 TRACKER.summary.forEach(function(s){
-  sumEl.innerHTML += '<div class="stat"><div class="k">'+s.k+'</div><div class="v">'+s.v+'</div><div class="chg'+(s.down?" down":"")+'">'+s.chg+'</div></div>';
+  var v = (s.auto && INVSTATS[s.auto] !== undefined) ? INVSTATS[s.auto] : s.v;
+  sumEl.innerHTML += '<div class="stat"><div class="k">'+s.k+'</div><div class="v">'+v+'</div><div class="chg'+(s.down?" down":"")+'">'+s.chg+'</div></div>';
 });
+
+/* ---- Link Inventory card (full width, above the grid) ---- */
+var invBar = '<div class="invbar">'+
+  '<span class="b">TOTAL <b>'+invTotal+'</b></span>'+
+  '<span class="b">LIVE <b>'+invLive+'</b></span>'+
+  '<span class="b">PENDING <b>'+invPend+'</b></span>'+
+  '<span class="b">ADDED LAST WEEK <b>'+invLastWk+'</b></span></div>'+
+  '<div class="invbar" style="border-bottom:1px solid var(--border)">'+
+  CATORDER.filter(function(c){return invByCat[c];}).map(function(c){
+    return '<span class="b">'+CATS[c].l+' <b>'+invByCat[c]+'</b></span>';
+  }).join('')+'</div>';
+
+var invRows = LK.slice().sort(function(a,b){
+  return CATORDER.indexOf(a.cat) - CATORDER.indexOf(b.cat);
+}).map(function(x){
+  var src = x.src ? ' <span class="src">↳ '+x.src+'</span>' : '';
+  var nm = x.name + ((x.count||1) > 1 ? ' ×'+x.count : '');
+  var cls = (x.status === "LIVE") ? "done" : (x.status === "SCHEDULED" ? "todo" : "wait");
+  return '<div class="row"><span class="name" style="white-space:normal">'+nm+'</span>'+
+    '<span class="cat '+x.cat+'">'+CATS[x.cat].l+'</span>'+
+    '<span class="meta" style="white-space:normal">'+x.meta+src+'</span>'+
+    '<span class="st '+cls+'">'+x.status+'</span></div>';
+}).join('');
+
+document.getElementById("invCard").innerHTML =
+  '<div class="card-h"><div class="ic" style="background:rgba(79,140,255,.15)">🔗</div>'+
+  '<div><div class="t">Link Inventory</div><div class="d">Total links, added last week, and category split · edit the links array in index.html</div></div>'+
+  '<span class="count">'+invTotal+' links</span></div>'+ invBar + invRows;
 
 document.getElementById("varunCard").innerHTML =
   '<div class="card-h"><div class="ic" style="background:rgba(55,208,220,.15)">📅</div>'+
