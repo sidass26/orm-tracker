@@ -94,18 +94,18 @@
 <script>
 /* ---- DATA. Edit entries here to log new items. ---- */
 var TRACKER = {
-  updated: "Mon Oct 12 2026",
+  updated: "Mon Oct 13 2026",
   /* --- EDIT THIS SINGLE FIELD each week for Varun's Monday summary. --- */
-  varun_monday: "This week: 3 paid backlinks live (robfromjapan.com 399 GBP, globetrottergirls.com Colosseum review USD 399, pierreblake.com Paris tours review USD 413, all but the first via presswhizz broker). Victoria (That Mum Travel Life) Disneyland trip first blog LIVE (USD 500 for 2 posts), one Disneyland-specific post still to come + 2 YouTube videos. Link inventory: 8 links total, 6 live, 2 pending. By category: paid blogger - broker 3 (all live), paid blogger - direct 3 (all live), YouTube/creator 2 (scheduled). Links added last week (w/c 5 Oct): 0. Takedown status: both vendor attempts now FAILED - TripAdvisor SG thread failed, and the Reddit r/GrandPrixTravel thread also failed (vendor to return payment). 15+ mirror domains already resolved via Corsearch vendor. Reddit strategy for r/headout in development.",
+  varun_monday: "Week 05 to 12 Oct 2026. Total links: 8 (7 live, 1 pending). Added this week: 1 (YouTube, Xguide review live 12 Oct). By category: paid blogger - broker 3 (live), paid blogger - direct 3 (live), YouTube 2 (1 live, 1 pending), creator 0, organic 0. Paid backlinks live: 6 placements. Blogger outreach: 9 emailed 7 Oct, 3 replies in (Melbourne publisher quote 3500 AUD + GST advertorial, UK writers 2000 USD and 500 GBP), negotiating. No new publications this week beyond the video. Takedowns: both vendor attempts FAILED (TripAdvisor SG thread, Reddit r/GrandPrixTravel, refund due); 15+ mirror domains resolved. Open need: lead enrichment agent for journalist leads.",
   chips: [
     "backlinks", "creator-outreach", "blogger-outreach",
     "reputation", "takedown", "process"
   ],
   summary: [
     {k:"Links total", v:0, auto:"linksTotal", chg:"▼ derived from Link Inventory below"},
-    {k:"Links added last week", v:0, auto:"linksLastWeek", chg:"▼ none in 5 to 12 Oct 26"},
+    {k:"Links added last week", v:0, auto:"linksLastWeek", chg:"▲ 1 · YouTube 12 Oct 26"},
     {k:"Creators approved", v:"~900", chg:"▼ 5k+ signups"},
-    {k:"Blogger outreach", v:9, chg:"▲ Ahrefs shortlist · emailed 7 Oct 26"},
+    {k:"Blogger outreach", v:9, chg:"▲ emailed 7 Oct 26 · 3 replies in"},
     {k:"Channels monitored", v:8, chg:"▲ incl TripAdvisor"},
     {k:"Takedowns resolved", v:"15+", chg:"▼ via Corsearch"},
     {k:"Open takedowns", v:4, chg:"▲ headout-enjoy.com NEW"},
@@ -127,9 +127,11 @@ var TRACKER = {
     {name:"TmTL · deals supplier page", cat:"direct", status:"LIVE", count:1, added:"Sep 2026",
      meta:'<a href="https://thatmumtravellife.com/resources-and-discount-codes/">resources-and-discount-codes</a> · Headout added as deals supplier',
      src:"Victoria · direct · Sep 2026"},
-    {name:"YouTube videos", cat:"youtube", status:"SCHEDULED", count:2, added:"pending",
-     meta:"Victoria trip creator side · links TBD once live",
-     src:"creator side of Victoria trip"}
+    {name:"YouTube · Xguide · Headout review, Paris", cat:"youtube", status:"LIVE", count:1, added:"Oct 2026", addedISO:"2026-10-12",
+     meta:'<a href="https://www.youtube.com/watch?v=C3qb8YtrckI">youtube.com/watch?v=C3qb8YtrckI</a> · My Honest Review Of Headout After Booking A Trip To Paris · 7.55K subs · 8:35 · affiliate link in description',
+     src:"creator side of Victoria trip · live 12 Oct 2026"},
+    {name:"YouTube video · 2nd (pending)", cat:"youtube", status:"SCHEDULED", count:1, added:"pending",
+     meta:"creator-side video still to publish · link TBD", src:"creator side of Victoria trip"}
   ],
   sections: [
     {
@@ -191,15 +193,15 @@ var TRACKER = {
     {
       icon:"✉️", icBg:"rgba(167,139,250,.15)",
       title:"Blogger Outreach · Ahrefs", desc:"Review-blogger acquisition via competitor backlinks",
-      count:"9 emailed",
+      count:"9 emailed · 3 replies",
       rows:[
         {name:"Where the Morgans", meta:'<a href="https://wherearethosemorgans.com/go-city-rome-explorer-pass-review/">Go City Rome review</a> · mark@ · DR37 · 212K dom', src:"Ahrefs shortlist · sent 7 Oct 26", st:"EMAILED", stc:"todo"},
         {name:"That Travel (UK)", meta:'<a href="https://thattravel.co.uk/prague-go-city-pass/">Prague Go City guide</a> · thattravelbusiness@gmail · DR28 · 78K', src:"Ahrefs shortlist · sent 7 Oct 26", st:"EMAILED", stc:"todo"},
         {name:"Sixty and Me · Margarita", meta:'<a href="https://sixtyandme.com/london-go-city-pass-review/">London Go City review</a> · caroline@ · DR71 · 40K', src:"Ahrefs shortlist · sent 7 Oct 26", st:"EMAILED", stc:"todo"},
         {name:"La Jolla Mom", meta:'<a href="https://lajollamom.com/go-san-diego-pass/">Go City San Diego</a> · contact@ · DR57 · 36K', src:"Ahrefs shortlist · sent 7 Oct 26", st:"EMAILED", stc:"todo"},
-        {name:"To Thot or Not · Joyce", meta:'<a href="https://tothotornot.com/klook-review/">Klook review</a> · hello@ · DR39 · 15K', src:"Ahrefs shortlist · sent 7 Oct 26", st:"EMAILED", stc:"todo"},
-        {name:"What the Redhead Said · Donna", meta:'<a href="https://whattheredheadsaid.com/go-city-new-york-explorer-pass/">Go City NY pass</a> · donna@ · DR38 · 13K', src:"Ahrefs shortlist · sent 7 Oct 26", st:"EMAILED", stc:"todo"},
-        {name:"I'm Just a Girl 16 · Chloe", meta:'<a href="https://www.imjustagirl16.co.uk/is-the-go-city-new-york-pass-worth-it-how-does-it-work/">Go City NY 2026</a> · chloe@wewriteyourcontent · DR31 · 9.6K', src:"Ahrefs shortlist · sent 7 Oct 26", st:"EMAILED", stc:"todo"},
+        {name:"To Thot or Not · Joyce", meta:'<a href="https://tothotornot.com/klook-review/">Klook review</a> · hello@ · DR39 · 15K · replied 9 Oct: wants Hot Air Balloon Melbourne x5 pax + advertorial (rate card 3500 AUD + GST)', src:"Ahrefs shortlist · sent 7 Oct 26", st:"REPLIED", stc:"done"},
+        {name:"What the Redhead Said · Donna", meta:'<a href="https://whattheredheadsaid.com/go-city-new-york-explorer-pass/">Go City NY pass</a> · donna@ · DR38 · 13K · replied 12 Oct: 500 GBP review + socials', src:"Ahrefs shortlist · sent 7 Oct 26", st:"REPLIED", stc:"done"},
+        {name:"I'm Just a Girl 16 · Chloe", meta:'<a href="https://www.imjustagirl16.co.uk/is-the-go-city-new-york-pass-worth-it-how-does-it-work/">Go City NY 2026</a> · chloe@wewriteyourcontent · DR31 · 9.6K · replied 12 Oct: 2000 USD sponsored post (NYC angle)', src:"Ahrefs shortlist · sent 7 Oct 26", st:"REPLIED", stc:"done"},
         {name:"The Savvy Backpacker · James", meta:'<a href="https://thesavvybackpacker.com/city-guide/barcelona-go-city-pass-review/">Go City Barcelona</a> · james@ · DR52 · 6.9K', src:"Ahrefs shortlist · sent 7 Oct 26", st:"EMAILED", stc:"todo"},
         {name:"Hidden Holland", meta:'<a href="https://www.hiddenholland.com/go-city-amsterdam-card-review/">Go City Amsterdam local</a> · collaborations@ · DR33 · 5.4K', src:"Ahrefs shortlist · sent 7 Oct 26", st:"EMAILED", stc:"todo"}
       ]
